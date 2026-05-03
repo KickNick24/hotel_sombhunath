@@ -1,4 +1,5 @@
 import { Phone, MessageCircle, Clock, MapPin } from "lucide-react";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, getWhatsAppGenericBookingUrl } from "../../utils/whatsappBooking";
 
 export function ContactStrip() {
   return (
@@ -36,7 +37,7 @@ export function ContactStrip() {
           <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 flex-wrap">
             {/* Call */}
             <a
-              href="tel:+919434004950"
+              href={CONTACT_PHONE_TEL}
               className="flex items-center gap-3 px-5 py-4 rounded-xl transition-all duration-200 hover:scale-105"
               style={{
                 backgroundColor: "rgba(255,255,255,0.07)",
@@ -58,14 +59,14 @@ export function ContactStrip() {
                   className="text-sm text-white"
                   style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
                 >
-                  +91 94340 04950
+                  {CONTACT_PHONE_DISPLAY}
                 </p>
               </div>
             </a>
 
             {/* WhatsApp */}
             <a
-              href="https://wa.me/919434004950"
+              href={getWhatsAppGenericBookingUrl()}
               target="_blank"
               rel="noreferrer"
               className="flex items-center gap-3 px-5 py-4 rounded-xl transition-all duration-200 hover:scale-105"

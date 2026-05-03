@@ -1,5 +1,11 @@
-/** WhatsApp Business number (digits only, no +). */
-export const WHATSAPP_BOOKING_NUMBER = "919434004950";
+/** WhatsApp Business number (digits only, no +). Country 91 + 10-digit mobile. */
+export const WHATSAPP_BOOKING_NUMBER = "919474198557";
+
+/** Voice line (same number as WhatsApp). */
+export const CONTACT_PHONE_TEL = "tel:+919474198557";
+
+/** Formatted for on-page labels */
+export const CONTACT_PHONE_DISPLAY = "+91 94741 98557";
 
 export type RoomBookingDetails = {
   name: string;

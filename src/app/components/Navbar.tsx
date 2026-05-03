@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router";
+import { CONTACT_PHONE_TEL } from "../../utils/whatsappBooking";
 import logoImg from "../../imports/logo-hotel-sombhunath.png";
 
 const navLinks = [
@@ -84,7 +85,7 @@ export function Navbar() {
             {/* Desktop CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
               <a
-                href="tel:+919434004950"
+                href={CONTACT_PHONE_TEL}
                 className="flex items-center gap-2 border-2 border-[#0B2C4A] px-4 py-2.5 text-sm font-bold text-[#0B2C4A] transition-all duration-200 hover:bg-[#0B2C4A] hover:text-white rounded-xl"
               >
                 <Phone className="h-4 w-4 shrink-0" aria-hidden />
@@ -150,7 +151,7 @@ export function Navbar() {
             })}
             <div className="flex flex-col gap-3 pt-3 mt-1">
               <a
-                href="tel:+919434004950"
+                href={CONTACT_PHONE_TEL}
                 className="flex items-center justify-center gap-2 rounded-xl border-2 border-[#0B2C4A] px-4 py-2.5 text-sm font-bold text-[#0B2C4A] transition-colors duration-200 hover:bg-[#0B2C4A] hover:text-white"
               >
                 <Phone className="h-4 w-4 shrink-0" aria-hidden />

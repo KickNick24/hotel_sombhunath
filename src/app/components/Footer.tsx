@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube } from "luci
 import { Link } from "react-router";
 import logoImg from "../../imports/logo-hotel-sombhunath.png";
 import { HOTEL_GOOGLE_MAPS_URL } from "../../constants/location";
-import { getWhatsAppGenericBookingUrl } from "../../utils/whatsappBooking";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, getWhatsAppGenericBookingUrl } from "../../utils/whatsappBooking";
 
 const quickLinks = [
   { label: "Home", to: "/" },
@@ -227,7 +227,7 @@ export function Footer() {
                 </p>
               </div>
               <a
-                href="tel:+919434004950"
+                href={CONTACT_PHONE_TEL}
                 className="flex items-center gap-3 group"
               >
                 <Phone className="w-4 h-4 flex-shrink-0" style={{ color: "#F97316" }} />
@@ -235,7 +235,7 @@ export function Footer() {
                   className="text-sm group-hover:text-white transition-colors"
                   style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Nunito', sans-serif" }}
                 >
-                  +91 94340 04950
+                  {CONTACT_PHONE_DISPLAY}
                 </span>
               </a>
               <a

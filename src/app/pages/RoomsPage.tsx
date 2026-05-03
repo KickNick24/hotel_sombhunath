@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Users, Maximize, MessageCircle, CheckCircle, Phone, Wifi, Wind, Tv, Coffee, Bath, Car } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
-import { getWhatsAppRoomBookingUrl } from "../../utils/whatsappBooking";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, getWhatsAppRoomBookingUrl } from "../../utils/whatsappBooking";
 
 const rooms = [
   {
@@ -213,7 +213,7 @@ function RoomCard({ room }: { room: (typeof rooms)[0] }) {
           </div>
           <div className="flex gap-2">
             <a
-              href="tel:+919434004950"
+              href={CONTACT_PHONE_TEL}
               className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm transition-all hover:opacity-90"
               style={{
                 background: "linear-gradient(135deg, #0B2C4A, #123B63)",
@@ -326,7 +326,7 @@ export function RoomsPage() {
               </p>
             </div>
             <a
-              href="tel:+919434004950"
+              href={CONTACT_PHONE_TEL}
               className="px-5 py-2.5 rounded-xl text-sm text-white flex-shrink-0 transition-all hover:opacity-90"
               style={{
                 background: "linear-gradient(135deg, #F97316, #FB923C)",
@@ -334,7 +334,7 @@ export function RoomsPage() {
                 fontWeight: 700,
               }}
             >
-              +91 94340 04950
+              {CONTACT_PHONE_DISPLAY}
             </a>
           </div>
         </div>

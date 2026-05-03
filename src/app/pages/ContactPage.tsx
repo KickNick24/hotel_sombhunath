@@ -2,22 +2,23 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, MessageCircle, Clock, Send, CheckCircle } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
 import { HOTEL_GOOGLE_MAPS_URL } from "../../constants/location";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, getWhatsAppGenericBookingUrl } from "../../utils/whatsappBooking";
 
 const contactInfo = [
   {
     icon: Phone,
     title: "Call Us",
-    primary: "+91 94340 04950",
+    primary: CONTACT_PHONE_DISPLAY,
     secondary: "Call or WhatsApp",
-    action: { label: "Call Now", href: "tel:+919434004950" },
+    action: { label: "Call Now", href: CONTACT_PHONE_TEL },
     color: "#0B2C4A",
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    primary: "+91 94340 04950",
+    primary: CONTACT_PHONE_DISPLAY,
     secondary: "Typically replies within minutes",
-    action: { label: "Chat on WhatsApp", href: "https://wa.me/919434004950" },
+    action: { label: "Chat on WhatsApp", href: getWhatsAppGenericBookingUrl() },
     color: "#25D366",
   },
   {

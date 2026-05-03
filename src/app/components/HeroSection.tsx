@@ -1,7 +1,7 @@
 import { Phone, MessageCircle, CalendarDays, Users, X } from "lucide-react";
 import { useState } from "react";
 import { DatePickerCalendar } from "./DatePickerCalendar";
-import { WHATSAPP_BOOKING_NUMBER, getWhatsAppGenericBookingUrl } from "../../utils/whatsappBooking";
+import { WHATSAPP_BOOKING_NUMBER, CONTACT_PHONE_TEL, getWhatsAppGenericBookingUrl } from "../../utils/whatsappBooking";
 import { publicUrl } from "../../utils/publicUrl";
 import { formatDateYmdToDisplay, formatDateYmdToDisplayShort } from "../../utils/dateDisplay";
 import { brand } from "../../constants/brand";
@@ -146,7 +146,7 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+919434004950"
+                href={CONTACT_PHONE_TEL}
                 className="flex items-center gap-2 px-6 py-3.5 rounded-xl text-white transition-all duration-200 hover:opacity-90 active:scale-95"
                 style={{
                   background: "linear-gradient(135deg, #0B2C4A, #123B63)",
