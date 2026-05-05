@@ -7,9 +7,6 @@ const LOBBY_IMAGE =
 
 const ABOUT_VIDEO_SRC = publicUrl("hero_section/hotel_video.mp4");
 
-const NATURE_IMAGE =
-  "https://images.unsplash.com/photo-1777532996385-895de31aad92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBuYXR1cmUlMjB0b3VyaXNtJTIwbGFuZHNjYXBlJTIwZ3JlZW4lMjBoaWxsc3xlbnwxfHx8fDE3Nzc3MzU2MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080";
-
 const stats = [
   { value: "20+", label: "Rooms", icon: "🏨" },
   { value: "1000+", label: "Happy Guests", icon: "😊" },
@@ -92,21 +89,6 @@ export function AboutSection() {
                   </button>
                 </div>
               )}
-            </div>
-
-            {/* Floating second image */}
-            <div
-              className="absolute -bottom-6 -right-4 lg:-right-8 w-44 h-36 rounded-xl overflow-hidden"
-              style={{
-                border: "4px solid white",
-                boxShadow: "0 8px 24px rgba(11,44,74,0.15)",
-              }}
-            >
-              <img
-                src={NATURE_IMAGE}
-                alt="Nature surroundings"
-                className="w-full h-full object-cover"
-              />
             </div>
 
             {/* Years badge */}
