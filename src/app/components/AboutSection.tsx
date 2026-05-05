@@ -122,19 +122,20 @@ export function AboutSection() {
               className="text-base"
               style={{ color: "#6B7280", fontFamily: "'Nunito', sans-serif", lineHeight: 1.8 }}
             >
-              Nestled in the heart of lush green surroundings, Hotel Sombhunath is
-              your sanctuary away from the hustle. We blend traditional Indian warmth
-              with modern amenities to deliver an unforgettable experience — whether
-              you're here for leisure, business, or a family getaway.
+              Set among green, open surroundings, Hotel Sombhunath is a comfortable
+              place to slow down and recharge. We pair traditional Indian hospitality
+              with practical, modern amenities—whether you are here for leisure, work,
+              or a family trip.
             </p>
 
             <p
               className="text-base"
               style={{ color: "#6B7280", fontFamily: "'Nunito', sans-serif", lineHeight: 1.8 }}
             >
-              Every room is thoughtfully designed to bring nature indoors — from
-              earthy tones to forest views from your window. Our staff is trained
-              to make you feel at home, not just checked in.
+              Our rooms are laid out for restful sleep and easy stays: uncluttered
+              spaces, quality bedding, and the small touches that help you settle in.
+              Our team focuses on clear, courteous service so you feel looked after
+              from arrival to departure.
             </p>
 
             {/* Values */}

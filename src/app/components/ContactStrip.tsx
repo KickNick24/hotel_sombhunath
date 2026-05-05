@@ -116,7 +116,7 @@ export function ContactStrip() {
                   className="text-sm text-white"
                   style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
                 >
-                  12:00 PM / 11:00 AM
+                  10:00 AM / 9:00 AM
                 </p>
               </div>
             </div>

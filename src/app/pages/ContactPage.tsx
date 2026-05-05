@@ -45,8 +45,8 @@ const timings = [
   { day: "Spa & Wellness", time: "8:00 AM – 8:00 PM" },
   { day: "Swimming Pool", time: "6:00 AM – 9:00 PM" },
   { day: "Fitness Centre", time: "5:00 AM – 10:00 PM" },
-  { day: "Check-in", time: "12:00 PM onwards" },
-  { day: "Check-out", time: "Before 11:00 AM" },
+  { day: "Check-in", time: "10:00 AM onwards" },
+  { day: "Check-out", time: "Before 9:00 AM" },
 ];
 
 export function ContactPage() {

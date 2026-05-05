@@ -125,7 +125,7 @@ export function HeroSection() {
 
             {/* Feature pills */}
             <div className="flex flex-wrap gap-2">
-              {["Free WiFi", "AC Rooms", "Complimentary Breakfast", "Free Parking"].map((item) => (
+              {["Free WiFi", "AC Rooms", "Free Parking"].map((item) => (
                 <span
                   key={item}
                   className="px-3 py-1 rounded-full text-xs"

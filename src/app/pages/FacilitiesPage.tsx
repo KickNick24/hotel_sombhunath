@@ -1,38 +1,66 @@
+import { useCallback, useEffect, useState } from "react";
 import {
-  Wifi, UtensilsCrossed, Car, Wind, HeadphonesIcon, ShieldCheck,
-  Dumbbell, TreePine, Coffee, Tv, Bath, Sparkles, Users, MapPin,
+  Wifi,
+  UtensilsCrossed,
+  Car,
+  Wind,
+  HeadphonesIcon,
+  ShieldCheck,
+  Tv,
+  Users,
+  X,
+  ZoomIn,
 } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { publicUrl } from "../../utils/publicUrl";
 
-const IMG_RESTAURANT = "https://images.unsplash.com/photo-1657349226718-4387403dfa1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBob3RlbCUyMHJlc3RhdXJhbnQlMjBkaW5pbmclMjBlbGVnYW50fGVufDF8fHx8MTc3NzczNjY2Nnww&ixlib=rb-4.1.0&q=80&w=1080";
-const IMG_CONFERENCE = "https://images.unsplash.com/photo-1617113139611-b7b97c561ee1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGNvbmZlcmVuY2UlMjBoYWxsJTIwbWVldGluZyUyMHJvb218ZW58MXx8fHwxNzc3NzM2NjY2fDA&ixlib=rb-4.1.0&q=80&w=1080";
-const IMG_SPA = "https://images.unsplash.com/photo-1677763856232-d9eb9e127e9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHdlbGxuZXNzJTIwcmVsYXhhdGlvbnxlbnwxfHx8fDE3Nzc2MTYwMzV8MA&ixlib=rb-4.1.0&q=80&w=1080";
-const IMG_POOL = "https://images.unsplash.com/photo-1731080647322-f9cf691d40ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHN3aW1taW5nJTIwcG9vbCUyMHJlc29ydCUyMGx1eHVyeXxlbnwxfHx8fDE3Nzc3MzY2Njd8MA&ixlib=rb-4.1.0&q=80&w=1080";
+const IMG_TRIPTI = publicUrl("facilities/tripti_restaurant.jpeg");
+const IMG_MENU_1 = publicUrl("facilities/menu-1.jpeg");
+const IMG_MENU_2 = publicUrl("facilities/menu-2.jpeg");
+const IMG_CONFERENCE =
+  "https://images.unsplash.com/photo-1617113139611-b7b97c561ee1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGNvbmZlcmVuY2UlMjBoYWxsJTIwbWVldGluZyUyMHJvb218ZW58MXx8fHwxNzc3NzM2NjY2fDA&ixlib=rb-4.1.0&q=80&w=1080";
 
-const highlights = [
+type Highlight = {
+  image: string;
+  icon: typeof UtensilsCrossed | typeof Users;
+  title: string;
+  description: string;
+  features: string[];
+  /** Opens full-screen viewer so menu text is readable */
+  menuPreview?: boolean;
+};
+
+const highlights: Highlight[] = [
   {
-    image: IMG_RESTAURANT,
+    image: IMG_TRIPTI,
     icon: UtensilsCrossed,
-    title: "Multi-Cuisine Restaurant",
+    title: "Tripti — Our In-House Restaurant",
     description:
-      "Savour authentic Indian cuisine and continental favourites at our in-house restaurant. Open from 7 AM to 11 PM, serving freshly prepared meals using locally sourced ingredients.",
-    features: ["Breakfast Buffet (7–10 AM)", "À la carte Lunch & Dinner", "Vegetarian & Vegan options", "Room Service available"],
+      "Enjoy homestyle Indian favourites and continental classics in a relaxed setting. We focus on fresh preparation, regional flavours, and generous hospitality — whether you dine in or order to your room.",
+    features: [
+      "Breakfast, lunch & dinner service",
+      "Vegetarian & vegan-friendly options",
+      "Chef’s daily specials & thali-style meals",
+      "Room service during restaurant hours",
+    ],
   },
   {
-    image: IMG_POOL,
-    icon: Bath,
-    title: "Swimming Pool",
+    image: IMG_MENU_1,
+    icon: UtensilsCrossed,
+    title: "From the Menu",
     description:
-      "Take a refreshing dip in our temperature-controlled outdoor pool surrounded by lush greenery. Perfect for both a morning workout and an evening relaxation session.",
-    features: ["Open 6 AM – 9 PM", "Towels & floaties provided", "Poolside snacks & drinks", "Separate kids' pool"],
+      "Browse curated picks from our kitchen — comforting curries, grills, breads, and seasonal sides. Ask our team for pairing suggestions or lighter portions for children.",
+    features: ["À la carte ordering", "Sharing platters for groups", "Fresh juices & beverages", "Desserts & Indian sweets"],
+    menuPreview: true,
   },
   {
-    image: IMG_SPA,
-    icon: Sparkles,
-    title: "Wellness & Spa",
+    image: IMG_MENU_2,
+    icon: UtensilsCrossed,
+    title: "Flavours to Savour",
     description:
-      "Rejuvenate your body and mind with our range of traditional Ayurvedic treatments and modern spa therapies. Pre-booking recommended.",
-    features: ["Ayurvedic massages", "Aromatherapy sessions", "Couple's spa packages", "Yoga & meditation deck"],
+      "A glimpse of what we serve: vibrant plates made for sharing, celebration dinners, and everyday travel meals alike. Tell us about dietary needs when you reserve a table.",
+    features: ["Pre-order for events & groups", "Custom spice levels on request", "Local ingredients where possible", "Takeaway on request"],
+    menuPreview: true,
   },
   {
     image: IMG_CONFERENCE,
@@ -48,21 +76,97 @@ const smallFacilities = [
   { icon: Wifi, label: "High-Speed WiFi", desc: "Complimentary 100 Mbps in all rooms & common areas" },
   { icon: Wind, label: "AC in All Rooms", desc: "Individually controlled climate systems" },
   { icon: Car, label: "Free Parking", desc: "Covered & open parking for 50+ vehicles" },
-  { icon: Coffee, label: "24/7 Coffee Bar", desc: "Complimentary tea, coffee & refreshments" },
   { icon: HeadphonesIcon, label: "24/7 Front Desk", desc: "Round-the-clock concierge support" },
   { icon: ShieldCheck, label: "CCTV Surveillance", desc: "Comprehensive security across the property" },
-  { icon: Dumbbell, label: "Fitness Centre", desc: "Fully equipped gym open 5 AM – 10 PM" },
-  { icon: TreePine, label: "Nature Trails", desc: "Guided forest walks and birding trails nearby" },
   { icon: Tv, label: "In-Room Entertainment", desc: "Smart TVs with OTT access in all rooms" },
-  { icon: MapPin, label: "Travel Desk", desc: "Tour bookings, cab arrangements & local guides" },
 ];
 
+function MenuLightbox({
+  src,
+  title,
+  onClose,
+}: {
+  src: string;
+  title: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-4 sm:p-6"
+      style={{ backgroundColor: "rgba(7,30,51,0.92)", backdropFilter: "blur(6px)" }}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Full size: ${title}`}
+      onClick={onClose}
+    >
+      <div className="absolute top-4 right-4 left-4 flex items-start justify-between gap-3 pointer-events-none">
+        <p
+          className="text-sm text-white/90 max-w-[70%] pointer-events-none"
+          style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700 }}
+        >
+          {title}
+        </p>
+        <button
+          type="button"
+          className="pointer-events-auto w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+          style={{ backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)" }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          aria-label="Close menu viewer"
+        >
+          <X className="w-5 h-5 text-white" />
+        </button>
+      </div>
+      <div
+        className="relative w-full max-w-5xl max-h-[85vh] mt-10 rounded-xl overflow-auto shadow-2xl"
+        style={{ backgroundColor: "#0f172a" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={src}
+          alt={title}
+          className="w-full h-auto min-h-0 object-contain block mx-auto"
+          style={{ maxHeight: "min(85vh, 1200px)" }}
+        />
+      </div>
+      <p className="mt-3 text-xs text-white/50" style={{ fontFamily: "'Nunito', sans-serif" }}>
+        Click outside or press Esc to close
+      </p>
+    </div>
+  );
+}
+
 export function FacilitiesPage() {
+  const [menuViewer, setMenuViewer] = useState<{ src: string; title: string } | null>(null);
+
+  const openMenu = useCallback((src: string, title: string) => {
+    setMenuViewer({ src, title });
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setMenuViewer(null);
+  }, []);
+
   return (
     <>
       <PageHeader
         title="Hotel Facilities"
-        subtitle="Everything you need for a perfect stay — recreation, dining, wellness, and more, all under one roof."
+        subtitle="Dining at Tripti, essential comforts, and a dedicated venue for meetings and celebrations — all on one property."
         breadcrumb="Facilities"
       />
 
@@ -74,13 +178,13 @@ export function FacilitiesPage() {
               className="text-sm uppercase tracking-widest mb-2"
               style={{ color: "#F97316", fontFamily: "'Nunito', sans-serif", fontWeight: 700 }}
             >
-              Premium Amenities
+              Dining & Gatherings
             </p>
             <h2
               className="text-3xl"
               style={{ fontFamily: "'Merriweather', serif", color: "#0B2C4A", fontWeight: 900 }}
             >
-              Signature Experiences
+              Restaurant, Menus & Events
             </h2>
           </div>
 
@@ -88,25 +192,76 @@ export function FacilitiesPage() {
             {highlights.map((item, index) => {
               const Icon = item.icon;
               const isEven = index % 2 === 0;
+              const isMenu = Boolean(item.menuPreview);
               return (
                 <div
                   key={item.title}
                   className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-8 items-center`}
                 >
-                  {/* Image */}
-                  <div className="flex-1 w-full rounded-2xl overflow-hidden" style={{ height: "320px" }}>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    />
+                  <div className="flex-1 w-full">
+                    {isMenu ? (
+                      <button
+                        type="button"
+                        onClick={() => openMenu(item.image, item.title)}
+                        className="group relative w-full rounded-2xl overflow-hidden text-left ring-2 ring-transparent transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F97316] focus-visible:ring-offset-2"
+                        style={{ height: "320px", cursor: "zoom-in" }}
+                        aria-label={`View full menu: ${item.title}`}
+                      >
+                        <img
+                          src={item.image}
+                          alt={`${item.title} — open full size to read menu`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div
+                          className="absolute inset-0 flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                          style={{ backgroundColor: "rgba(11,44,74,0.45)" }}
+                        >
+                          <span
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white text-sm"
+                            style={{
+                              fontFamily: "'Nunito', sans-serif",
+                              fontWeight: 700,
+                              backgroundColor: "rgba(249,115,22,0.95)",
+                              boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+                            }}
+                          >
+                            <ZoomIn className="w-4 h-4 shrink-0" aria-hidden />
+                            View full menu
+                          </span>
+                        </div>
+                        <span
+                          className="absolute bottom-3 right-3 flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-lg shadow-md pointer-events-none"
+                          style={{
+                            fontFamily: "'Nunito', sans-serif",
+                            fontWeight: 700,
+                            color: "#0B2C4A",
+                            backgroundColor: "rgba(255,255,255,0.95)",
+                            border: "1px solid #E2E8F0",
+                          }}
+                        >
+                          <ZoomIn className="w-3.5 h-3.5 shrink-0" aria-hidden />
+                          <span className="sm:hidden">Tap to enlarge</span>
+                          <span className="hidden sm:inline">Click to enlarge</span>
+                        </span>
+                      </button>
+                    ) : (
+                      <div className="rounded-2xl overflow-hidden" style={{ height: "320px" }}>
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    )}
                   </div>
 
-                  {/* Content */}
                   <div className="flex-1 flex flex-col gap-5">
                     <div
                       className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                      style={{ background: "linear-gradient(135deg, #F97316, #FB923C)", boxShadow: "0 4px 12px rgba(249,115,22,0.3)" }}
+                      style={{
+                        background: "linear-gradient(135deg, #F97316, #FB923C)",
+                        boxShadow: "0 4px 12px rgba(249,115,22,0.3)",
+                      }}
                     >
                       <Icon className="w-6 h-6 text-white" />
                     </div>
@@ -122,6 +277,11 @@ export function FacilitiesPage() {
                     >
                       {item.description}
                     </p>
+                    {isMenu && (
+                      <p className="text-xs -mt-2" style={{ color: "#F97316", fontFamily: "'Nunito', sans-serif", fontWeight: 600 }}>
+                        Click the menu image to enlarge and read all items.
+                      </p>
+                    )}
                     <ul className="grid grid-cols-2 gap-2">
                       {item.features.map((f) => (
                         <li
@@ -164,7 +324,7 @@ export function FacilitiesPage() {
               Everything You Need
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[900px] mx-auto">
             {smallFacilities.map(({ icon: Icon, label, desc }) => (
               <div
                 key={label}
@@ -198,6 +358,8 @@ export function FacilitiesPage() {
           </div>
         </div>
       </section>
+
+      {menuViewer && <MenuLightbox src={menuViewer.src} title={menuViewer.title} onClose={closeMenu} />}
     </>
   );
 }

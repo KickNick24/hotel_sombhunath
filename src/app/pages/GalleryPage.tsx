@@ -15,54 +15,49 @@ function gallerySrc(filename: string): string {
   return publicUrl(`gallery/${filename}`);
 }
 
-const IMAGES: GalleryImage[] = [
-  {
-    id: 1,
-    src: gallerySrc("01.jpeg"),
-    caption: "Infinity Pool",
-  },
-  {
-    id: 2,
-    src: gallerySrc("02.jpeg"),
-    caption: "Deluxe Room",
-  },
-  {
-    id: 3,
-    src: gallerySrc("03.jpeg"),
-    caption: "Tropical Forest Surroundings",
-  },
-  {
-    id: 4,
-    src: gallerySrc("04.jpeg"),
-    caption: "Fine Dining Restaurant",
-  },
-  {
-    id: 5,
-    src: gallerySrc("05.jpeg"),
-    caption: "Spa & Wellness Retreat",
-  },
-  {
-    id: 6,
-    src: gallerySrc("06.jpeg"),
-    caption: "Grand Lobby",
-  },
-  {
-    id: 7,
-    src: gallerySrc("07.jpeg"),
-    caption: "Valley Landscape",
-  },
-];
+/** JPEGs from `public/gallery/` shown on the gallery page. */
+const GALLERY_FILENAMES = [
+  "photo-output.jpg",
+  "photo-output(1).jpg",
+  "photo-output(2).jpg",
+  "photo-output(3).jpg",
+  "photo-output(5).jpg",
+  "photo-output(7).jpg",
+  "photo-output(8).jpg",
+  "photo-output(10).jpg",
+  "photo-output(12).jpg",
+  "photo-output(13).jpg",
+  "photo-output(15).jpg",
+  "photo-output(16).jpg",
+  "photo-output(17).jpg",
+  "photo-output(18).jpg",
+  "photo-output(20).jpg",
+  "photo-output(21).jpg",
+  "photo-output(22).jpg",
+] as const;
+
+const IMAGES: GalleryImage[] = GALLERY_FILENAMES.map((filename, index) => ({
+  id: index + 1,
+  src: gallerySrc(filename),
+  caption: `Hotel gallery photo ${index + 1}`,
+}));
 
 type BentoSpan = { col: 1 | 2; row: 1 | 2 };
-const BENTO_LAYOUT: Record<number, BentoSpan> = {
-  1: { col: 2, row: 2 },
-  2: { col: 1, row: 1 },
-  3: { col: 1, row: 1 },
-  4: { col: 2, row: 1 },
-  5: { col: 1, row: 2 },
-  6: { col: 1, row: 1 },
-  7: { col: 2, row: 1 },
-};
+
+/** Repeating bento rhythm so any number of images lays out cleanly. */
+const BENTO_PATTERN: BentoSpan[] = [
+  { col: 2, row: 2 },
+  { col: 1, row: 1 },
+  { col: 1, row: 1 },
+  { col: 2, row: 1 },
+  { col: 1, row: 2 },
+  { col: 1, row: 1 },
+  { col: 2, row: 1 },
+];
+
+function bentoSpanForId(id: number): BentoSpan {
+  return BENTO_PATTERN[(id - 1) % BENTO_PATTERN.length] ?? { col: 1, row: 1 };
+}
 
 function Lightbox({
   image,
@@ -211,7 +206,7 @@ export function GalleryPage() {
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
             {IMAGES.map((image) => {
-              const span = BENTO_LAYOUT[image.id] ?? { col: 1 as const, row: 1 as const };
+              const span = bentoSpanForId(image.id);
               return (
                 <BentoCell
                   key={image.id}

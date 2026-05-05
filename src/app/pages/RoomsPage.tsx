@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { Users, Maximize, MessageCircle, CheckCircle, Phone, Wifi, Wind, Tv, Coffee, Bath, Car } from "lucide-react";
+import { Users, MessageCircle, CheckCircle, Phone, Wifi, Wind, Tv, Coffee, Bath, Car } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, getWhatsAppRoomBookingUrl } from "../../utils/whatsappBooking";
+import { publicUrl } from "../../utils/publicUrl";
 
 const rooms = [
   {
     id: 1,
     category: "standard",
-    image: "https://images.unsplash.com/photo-1714138083505-fc47d575e3b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3p5JTIwaG90ZWwlMjBzdGFuZGFyZCUyMHJvb218ZW58MXx8fHwxNzc3NzM1NjI2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: publicUrl("rooms/standard_room.jpg"),
     name: "Standard Room",
     price: "₹999",
     originalPrice: "₹1,299",
     guests: 2,
-    size: "200 sq ft",
     rating: 4.6,
     tag: "Budget Stay",
     tagBg: "#22C55E",
@@ -23,50 +23,49 @@ const rooms = [
   {
     id: 2,
     category: "deluxe",
-    image: "https://images.unsplash.com/photo-1662990782404-a5d704ea323a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGRlbHV4ZSUyMHJvb20lMjBpbnRlcmlvciUyMHdhcm0lMjBsaWdodGluZ3xlbnwxfHx8fDE3Nzc3MzU2MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: publicUrl("rooms/deluxe_room.jpg"),
     name: "Deluxe Room",
     price: "₹1,499",
     originalPrice: "₹1,999",
     guests: 2,
-    size: "280 sq ft",
     rating: 4.8,
     tag: "Best Seller",
     tagBg: "#F97316",
     description: "Our most popular room offering a perfect blend of comfort and elegance. Features premium furnishings and a private balcony with nature views.",
-    amenities: ["King Bed", "Free WiFi", "AC", "LED TV", "Minibar", "Balcony", "Room Service"],
+    amenities: ["King Bed", "Free WiFi", "AC", "LED TV", "Balcony", "Room Service"],
     inclusions: ["Complimentary Breakfast", "Free Parking", "Evening Snacks", "24/7 Front Desk"],
   },
   {
     id: 3,
     category: "suite",
-    image: "https://images.unsplash.com/photo-1766928210443-0be92ed5884a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHN1aXRlJTIwYmVkcm9vbSUyMGVsZWdhbnR8ZW58MXx8fHwxNzc3NzM1NjI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: publicUrl("rooms/premium_suite.jpg"),
     name: "Premium Suite",
     price: "₹2,999",
     originalPrice: "₹3,999",
     guests: 2,
-    size: "420 sq ft",
     rating: 4.9,
     tag: "Luxury",
     tagBg: "#FACC15",
     tagText: "#0B2C4A",
-    description: "An opulent suite with a separate living area, Jacuzzi bathroom, and panoramic views. Perfect for couples celebrating special occasions.",
-    amenities: ["King Bed", "Living Area", "Jacuzzi", "Balcony", "Minibar", "Nespresso Machine", "Bathrobe & Slippers"],
+    description:
+      "An expansive suite with a separate living area, refined finishes, and panoramic views. Ideal for couples celebrating a special occasion or an indulgent getaway.",
+    amenities: ["King Bed", "Living Area", "Balcony", "LED TV", "Hot Water", "Room Service"],
     inclusions: ["Full Breakfast", "Welcome Drink", "Evening Snacks", "Late Checkout", "Free Parking"],
   },
   {
     id: 4,
     category: "family",
-    image: "https://images.unsplash.com/photo-1667125095636-dce94dcbdd96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGZhbWlseSUyMHJvb20lMjBzcGFjaW91c3xlbnwxfHx8fDE3Nzc3MzU2MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: publicUrl("rooms/family_room.jpg"),
     name: "Family Room",
     price: "₹2,199",
     originalPrice: "₹2,799",
     guests: 4,
-    size: "380 sq ft",
     rating: 4.7,
     tag: "Family Pick",
     tagBg: "#123B63",
-    description: "Spacious and thoughtfully arranged for families, with two queen beds and a kitchenette. Kids will love the open space and cozy setup.",
-    amenities: ["2 Queen Beds", "Free WiFi", "AC", "LED TV", "Kitchenette", "Children's Toiletries", "Extra Cots Available"],
+    description:
+      "Spacious and thoughtfully arranged for families, with two queen beds and plenty of room to unwind. A practical, comfortable base for everyone.",
+    amenities: ["2 Queen Beds", "Free WiFi", "AC", "LED TV", "Daily Housekeeping", "Spacious Layout"],
     inclusions: ["Complimentary Breakfast for All", "Free Parking", "Kids Activity Kit", "24/7 Front Desk"],
   },
 ];
@@ -131,10 +130,6 @@ function RoomCard({ room }: { room: (typeof rooms)[0] }) {
             <span className="flex items-center gap-1 text-xs" style={{ color: "#6B7280", fontFamily: "'Nunito', sans-serif" }}>
               <Users className="w-3.5 h-3.5" style={{ color: "#F97316" }} />
               {room.guests} Guests
-            </span>
-            <span className="flex items-center gap-1 text-xs" style={{ color: "#6B7280", fontFamily: "'Nunito', sans-serif" }}>
-              <Maximize className="w-3.5 h-3.5" style={{ color: "#F97316" }} />
-              {room.size}
             </span>
           </div>
           <p className="mt-3 text-sm" style={{ color: "#6B7280", fontFamily: "'Nunito', sans-serif", lineHeight: 1.7 }}>
@@ -231,7 +226,6 @@ function RoomCard({ room }: { room: (typeof rooms)[0] }) {
                 price: room.price,
                 originalPrice: room.originalPrice,
                 guests: room.guests,
-                size: room.size,
               })}
               target="_blank"
               rel="noreferrer"

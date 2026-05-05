@@ -47,7 +47,7 @@ export function CancellationPolicyPage() {
 
           {h2("1. Standard cancellations")}
           {p(
-            "For most direct bookings, you may cancel free of charge up to 24 hours before your scheduled check-in time (12:00 PM on the arrival date), unless a different rule was confirmed in writing at the time of booking.",
+            "For most direct bookings, you may cancel free of charge up to 24 hours before your scheduled check-in time (10:00 AM on the arrival date), unless a different rule was confirmed in writing at the time of booking.",
           )}
           {ul([
             "Within 24 hours of check-in: one night’s room charge may apply.",
