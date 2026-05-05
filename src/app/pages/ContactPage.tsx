@@ -42,9 +42,6 @@ const contactInfo = [
 const timings = [
   { day: "Front Desk", time: "24 Hours / 7 Days" },
   { day: "Restaurant", time: "7:00 AM – 11:00 PM" },
-  { day: "Spa & Wellness", time: "8:00 AM – 8:00 PM" },
-  { day: "Swimming Pool", time: "6:00 AM – 9:00 PM" },
-  { day: "Fitness Centre", time: "5:00 AM – 10:00 PM" },
   { day: "Check-in", time: "10:00 AM onwards" },
   { day: "Check-out", time: "Before 9:00 AM" },
 ];
