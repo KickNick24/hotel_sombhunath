@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
 import { Link } from "react-router";
 import logoImg from "../../imports/logo-hotel-sombhunath.png";
 import { HOTEL_GOOGLE_MAPS_URL } from "../../constants/location";
@@ -123,14 +123,13 @@ export function Footer() {
             {/* Social Links */}
             <div className="flex items-center gap-3">
               {[
-                { Icon: Facebook, href: "#" },
-                { Icon: Instagram, href: "#" },
-                { Icon: Twitter, href: "#" },
-                { Icon: Youtube, href: "#" },
-              ].map(({ Icon, href }, i) => (
+                { Icon: Facebook, href: "#", label: "Facebook" },
+                { Icon: Instagram, href: "#", label: "Instagram" },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={i}
+                  key={label}
                   href={href}
+                  aria-label={label}
                   className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-[#F97316]"
                   style={{
                     backgroundColor: "rgba(255,255,255,0.07)",
