@@ -5,7 +5,7 @@ import { publicUrl } from "../../utils/publicUrl";
 const LOBBY_IMAGE =
   "https://images.unsplash.com/photo-1765611368472-68c35ea7fe55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5JTIwcmVjZXB0aW9uJTIwd2FybSUyMGludGVyaW9yfGVufDF8fHx8MTc3NzczNTYzMnww&ixlib=rb-4.1.0&q=80&w=1080";
 
-const ABOUT_VIDEO_SRC = publicUrl("uploads/hotel_video.mp4");
+const ABOUT_VIDEO_SRC = publicUrl("hero_section/hotel_video.mp4");
 
 const NATURE_IMAGE =
   "https://images.unsplash.com/photo-1777532996385-895de31aad92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBuYXR1cmUlMjB0b3VyaXNtJTIwbGFuZHNjYXBlJTIwZ3JlZW4lMjBoaWxsc3xlbnwxfHx8fDE3Nzc3MzU2MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080";
