@@ -1,4 +1,7 @@
-import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook } from "lucide-react";
+
+const FACEBOOK_URL =
+  "https://www.facebook.com/people/Hotel-Sombhunath/61566392703749/?sk=reels_tab";
 import { Link } from "react-router";
 import logoImg from "../../imports/logo-hotel-sombhunath.png";
 import { HOTEL_GOOGLE_MAPS_URL } from "../../constants/location";
@@ -122,23 +125,19 @@ export function Footer() {
 
             {/* Social Links */}
             <div className="flex items-center gap-3">
-              {[
-                { Icon: Facebook, href: "#", label: "Facebook" },
-                { Icon: Instagram, href: "#", label: "Instagram" },
-              ].map(({ Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-[#F97316]"
-                  style={{
-                    backgroundColor: "rgba(255,255,255,0.07)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <Icon className="w-4 h-4" style={{ color: "rgba(255,255,255,0.6)" }} />
-                </a>
-              ))}
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Hotel Sombhunath on Facebook"
+                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-[#F97316]"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.07)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                }}
+              >
+                <Facebook className="w-4 h-4" style={{ color: "rgba(255,255,255,0.6)" }} />
+              </a>
             </div>
 
             {/* Rating */}

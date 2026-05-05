@@ -1,7 +1,11 @@
-import { Shield, Award, Heart } from "lucide-react";
+import { useRef, useState } from "react";
+import { Shield, Award, Heart, Play } from "lucide-react";
+import { publicUrl } from "../../utils/publicUrl";
 
 const LOBBY_IMAGE =
   "https://images.unsplash.com/photo-1765611368472-68c35ea7fe55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5JTIwcmVjZXB0aW9uJTIwd2FybSUyMGludGVyaW9yfGVufDF8fHx8MTc3NzczNTYzMnww&ixlib=rb-4.1.0&q=80&w=1080";
+
+const ABOUT_VIDEO_SRC = publicUrl("uploads/hotel_video.mp4");
 
 const NATURE_IMAGE =
   "https://images.unsplash.com/photo-1777532996385-895de31aad92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBuYXR1cmUlMjB0b3VyaXNtJTIwbGFuZHNjYXBlJTIwZ3JlZW4lMjBoaWxsc3xlbnwxfHx8fDE3Nzc3MzU2MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080";
@@ -14,6 +18,19 @@ const stats = [
 ];
 
 export function AboutSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  const handlePlayClick = () => {
+    setHasStarted(true);
+    const el = videoRef.current;
+    if (el) {
+      void el.play().catch(() => {
+        /* user may need to interact again if autoplay blocked */
+      });
+    }
+  };
+
   return (
     <section
       id="about"
@@ -31,23 +48,50 @@ export function AboutSection() {
             />
 
             <div
-              className="relative rounded-2xl overflow-hidden"
+              className="relative rounded-2xl overflow-hidden bg-[#0B2C4A]"
               style={{
                 boxShadow: "0 20px 56px rgba(11,44,74,0.18)",
                 border: "4px solid white",
                 height: "400px",
               }}
             >
-              <img
-                src={LOBBY_IMAGE}
-                alt="Hotel Lobby"
-                className="w-full h-full object-cover"
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover block"
+                src={ABOUT_VIDEO_SRC}
+                poster={LOBBY_IMAGE}
+                playsInline
+                preload="metadata"
+                controls={hasStarted}
+                aria-label="Hotel lobby tour video"
               />
               {/* Gradient overlay */}
               <div
-                className="absolute bottom-0 left-0 right-0 h-20"
+                className="absolute bottom-0 left-0 right-0 h-20 z-[1] pointer-events-none"
                 style={{ background: "linear-gradient(to top, rgba(11,44,74,0.4), transparent)" }}
               />
+              {!hasStarted && (
+                <div
+                  className="absolute inset-0 z-[2] flex items-center justify-center"
+                  style={{ backgroundColor: "rgba(11,44,74,0.18)" }}
+                >
+                  <button
+                    type="button"
+                    onClick={handlePlayClick}
+                    className="flex items-center justify-center rounded-full transition-transform duration-200 hover:scale-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#F97316] focus-visible:ring-offset-2"
+                    style={{
+                      width: "72px",
+                      height: "72px",
+                      background: "linear-gradient(135deg, #F97316, #FB923C)",
+                      boxShadow: "0 8px 28px rgba(249,115,22,0.45)",
+                      border: "3px solid white",
+                    }}
+                    aria-label="Play hotel video"
+                  >
+                    <Play className="w-8 h-8 text-white ml-1" fill="white" aria-hidden />
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Floating second image */}
